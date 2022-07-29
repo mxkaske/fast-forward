@@ -1,0 +1,45 @@
+{
+  "name": "@fdbk/widget-react",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external && npm run build:css",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external && npm run watch:css",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "build:css": "npx tailwindcss -i src/styles/globals.css -o dist/build.css --minify",
+    "postinstall": "npm run build:css",
+    "watch:css": "npx tailwindcss -i src/styles/globals.css -o dist/build.css --watch"
+  },
+  "devDependencies": {
+    "@floating-ui/react-dom-interactions": "^0.6.5",
+    "@heroicons/react": "^1.0.1",
+    "@tailwindcss/forms": "^0.5.1",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
+    "autoprefixer": "^10.4.7",
+    "classnames": "^2.3.1",
+    "eslint-config": "*",
+    "html-to-image": "^1.9.0",
+    "postcss": "^8.4.13",
+    "react": "^17.0.2",
+    "react-dom": "17.0.2",
+    "react-popper": "^2.2.5",
+    "tailwindcss": "^3.1.0",
+    "ts-config": "*",
+    "tsup": "^5.10.1",
+    "typescript": "^4.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "react widget (alpha)",
+  "author": "Maximilian Kaske"
+}

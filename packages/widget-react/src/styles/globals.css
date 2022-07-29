@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TODO: reduce number of colors */
+
+/* TODO: rename with prefix --ff-color-* to avoid duplications */
+
+:root {
+  --ff-black: 0 0 0;
+  --ff-gray-light: 229 231 235;
+  --ff-gray: 55 65 81;
+  --ff-primary: 79 70 229;
+  --ff-green: 34 197 94;
+}
+
+@layer base {
+  #ff-widget.theme-light {
+    --ff-color-primary: 79 70 229;
+    --ff-color-fill: 255 255 255;
+    --ff-color-text: 0 0 0;
+    --ff-color-border: 229 231 235;
+    --ff-color-button: 243 244 246;
+  }
+
+  #ff-widget.theme-dark {
+    --ff-color-text: 255 255 255;
+    --ff-color-fill: 17 24 39;
+    --ff-color-border: 31 41 55;
+    --ff-color-primary: 236 72 153;
+    --ff-color-button: 31 41 55;
+  }
+}

@@ -1,0 +1,58 @@
+import { default as Layout } from "@/components/layout/MDXLayout";
+
+export default (props) => <Layout {...props} />;
+
+# Getting Started
+
+> Quick reminder that this is an experimental project.
+
+**TD;DR**: [docs/examples](/docs/examples)
+
+## How to collect data
+
+To collect data via a custom form (which is the only way right now), send a _POST_ request that looks like following:
+
+```tsx
+fetch("https://fast-forward.app/api/feedback", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    projectId: "...", // mandatory
+    text: "...", // mandatory
+    category: "", // mandatory - either "issue", "idea" or "other"
+    userId: user.email, // optional
+    metadata: {}, // optional - e.g. { lang: "en", position: "header" }
+  }),
+});
+```
+
+Raw Example of the Widget
+
+```tsx
+const Widget = () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const target = event.target as typeof event.target & {
+      text: { value: string };
+      type: { value: string };
+    };
+    await fetch(...)
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="radio" name="type" id="other" />
+      <label htmlFor="other">other</label>
+      <input type="radio" name="type" id="issue" />
+      <label htmlFor="issue">issue</label>
+      <input type="radio" name="type" id="idea" />
+      <label htmlFor="idea">idea</label>
+      <textarea rows={3} name="message" message="Tell us about..." />
+      <button type="submit">submit</button>
+    </form>
+  );
+};
+```
+
+To the [docs/examples](/docs/examples).
